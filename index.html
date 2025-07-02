@@ -3,270 +3,405 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Salesforce Administrator Portfolio</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>Your Name - Salesforce Administrator Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
+        /* Basic Reset & Typography */
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f3f4f6; /* Light gray background */
-            color: #374151; /* Dark gray text */
+            margin: 0;
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f4f7f6;
         }
-        .section-title {
-            position: relative;
-            display: inline-block;
-            margin-bottom: 2rem;
+
+        h1, h2, h3 {
+            color: #0070D2; /* Salesforce Blue */
             font-weight: 700;
-            color: #1f2937;
         }
-        .section-title::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: -8px;
-            width: 60px;
-            height: 4px;
-            background-color: #4f46e5; /* Indigo */
-            border-radius: 9999px;
+
+        /* Header */
+        header {
+            background-color: #0070D2;
+            color: #fff;
+            padding: 1.5em 0;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            display: flex; /* Use flexbox for layout */
+            flex-direction: column; /* Stack items vertically by default */
+            align-items: center; /* Center items horizontally */
+            justify-content: center;
+            position: relative; /* Needed for absolute positioning of profile-photo-container */
+        }
+
+        .profile-photo-container {
+            width: 150px; /* Adjust size as needed */
+            height: 150px; /* Adjust size as needed */
+            border-radius: 50%; /* Makes it circular */
+            overflow: hidden; /* Hides parts of the image outside the circle */
+            border: 4px solid #fff; /* White border around the photo */
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            margin-bottom: 1em; /* Space between photo and text */
+        }
+
+        .profile-photo-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Ensures the image covers the area without distortion */
+            display: block;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.8em;
+            color: #fff;
+        }
+
+        header p {
+            font-size: 1.2em;
+            margin-top: 0.5em;
+        }
+
+        /* Navigation */
+        nav {
+            background-color: #fff;
+            padding: 1em 0;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #0070D2;
+            font-weight: 500;
+            padding: 5px 10px;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: #005ce6;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 2em auto;
+            padding: 0 20px;
+        }
+
+        /* Sections */
+        section {
+            background-color: #fff;
+            padding: 2em;
+            margin-bottom: 2em;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 1em;
+        }
+
+        .skill-item {
+            background-color: #e6f2ff; /* Light Salesforce Blue */
+            padding: 1em;
+            border-left: 5px solid #0070D2;
+            border-radius: 5px;
+        }
+
+        .skill-item h3 {
+            margin-top: 0;
+            color: #0070D2;
+        }
+
+        /* Project Section */
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 1.5em;
+        }
+
+        .project-card {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .project-card img {
+            width: 100%;
+            height: 200px; /* Fixed height for project images */
+            object-fit: cover;
+            display: block;
+        }
+
+        .project-content {
+            padding: 1.5em;
+        }
+
+        .project-content h3 {
+            margin-top: 0;
+            color: #0070D2;
+            font-size: 1.4em;
+        }
+
+        .project-tags {
+            margin-top: 1em;
+        }
+
+        .project-tags span {
+            display: inline-block;
+            background-color: #d1e7dd; /* Greenish tag */
+            color: #0a3622;
+            padding: 0.3em 0.8em;
+            border-radius: 4px;
+            font-size: 0.85em;
+            margin-right: 5px;
+            margin-bottom: 5px;
+        }
+
+        .project-link {
+            display: inline-block;
+            margin-top: 1.2em;
+            background-color: #0070D2;
+            color: #fff;
+            padding: 0.7em 1.2em;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .project-link:hover {
+            background-color: #005ce6;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2em 0;
+            margin-top: 3em;
+            background-color: #333;
+            color: #fff;
+            font-size: 0.9em;
+        }
+
+        footer a {
+            color: #0070D2;
+            text-decoration: none;
+        }
+
+        /* Responsive Design */
+        @media (min-width: 769px) { /* On larger screens, arrange header content in a row */
+            header {
+                flex-direction: row; /* Align items horizontally */
+                justify-content: center;
+                gap: 20px; /* Space between photo and text */
+                padding: 2em 0; /* Adjust padding for better look */
+            }
+
+            .profile-photo-container {
+                margin-bottom: 0; /* Remove bottom margin when in row layout */
+            }
+
+            header h1, header p {
+                text-align: left; /* Align text to the left when in row layout */
+            }
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2em;
+            }
+
+            header p {
+                font-size: 1em;
+            }
+
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            nav ul li {
+                margin: 5px 0;
+            }
+
+            .skills-grid, .project-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
-<body class="antialiased">
-
-    <!-- Header & Navigation -->
-    <header class="bg-white shadow-md py-4">
-        <nav class="container mx-auto px-4 flex justify-between items-center">
-            <a href="#" class="text-2xl font-bold text-indigo-700 rounded-lg p-2 transition duration-300 hover:bg-indigo-50">
-                Salesforce Admin
-            </a>
-            <div class="hidden md:flex space-x-6">
-                <a href="#about" class="text-gray-600 hover:text-indigo-600 font-medium transition duration-300 rounded-md px-3 py-2 hover:bg-gray-100">About</a>
-                <a href="#skills" class="text-gray-600 hover:text-indigo-600 font-medium transition duration-300 rounded-md px-3 py-2 hover:bg-gray-100">Skills</a>
-                <a href="#portfolio" class="text-gray-600 hover:text-indigo-600 font-medium transition duration-300 rounded-md px-3 py-2 hover:bg-gray-100">Portfolio</a>
-                <a href="#contact" class="text-gray-600 hover:text-indigo-600 font-medium transition duration-300 rounded-md px-3 py-2 hover:bg-gray-100">Contact</a>
-            </div>
-            <!-- Mobile Menu Button -->
-            <button id="mobile-menu-button" class="md:hidden text-gray-600 hover:text-indigo-600 focus:outline-none">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
-                </svg>
-            </button>
-        </nav>
-
-        <!-- Mobile Menu Overlay -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg py-4 mt-2 rounded-lg mx-4">
-            <a href="#about" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-md">About</a>
-            <a href="#skills" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-md">Skills</a>
-            <a href="#portfolio" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-md">Portfolio</a>
-            <a href="#contact" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-md">Contact</a>
+<body>
+    <header>
+        <div class="profile-photo-container">
+            <img src="https://via.placeholder.com/150/0070D2/FFFFFF?text=Your+Photo" alt="Your Profile Photo">
+        </div>
+        <div>
+            <h1>[Your Name]</h1>
+            <p>Salesforce Administrator & Automation Specialist</p>
         </div>
     </header>
 
-    <main>
-        <!-- Hero/Introduction Section -->
-        <section id="about" class="bg-gradient-to-r from-indigo-600 to-purple-700 text-white py-20 px-4 sm:px-6 lg:px-8 text-center rounded-b-xl shadow-lg">
-            <div class="container mx-auto max-w-4xl">
-                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold mb-4 leading-tight">
-                    Hi, I'm <span class="text-yellow-300">Juliet Anyanwu</span>
-                </h1>
-                <p class="text-lg sm:text-xl mb-8 opacity-90">
-                    A dedicated Salesforce Administrator focused on optimizing CRM processes, enhancing data integrity, and driving user adoption to maximize business efficiency.
-                </p>
+    <nav>
+        <ul>
+            <li><a href="#about">About Me</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
 
-                <!-- New: Detailed About Me Section -->
-                <div class="mt-12 mb-8 bg-white text-gray-800 p-8 rounded-lg shadow-xl max-w-2xl mx-auto flex flex-col md:flex-row items-center justify-center space-y-6 md:space-y-0 md:space-x-8">
-                    <div class="flex-shrink-0">
-                        <img src="https://placehold.co/150x150/d1d5db/374151?text=Your+Photo" alt="Your Profile Photo" class="rounded-full w-32 h-32 object-cover shadow-lg border-4 border-indigo-200">
-                    </div>
-                    <div class="text-left md:text-lg">
-                        <h3 class="text-2xl font-bold text-indigo-700 mb-3">A Bit More About Me</h3>
-                        <p class="mb-4">
-                            With Five years of experience as a Salesforce Administrator, I thrive on transforming complex business challenges into elegant, scalable Salesforce solutions. My passion lies in leveraging declarative tools to automate processes, improve data quality, and empower users to get the most out of their CRM.
-                        </p>
-                        <p>
-                            I'm committed to continuous learning and staying updated with the latest Salesforce releases and best practices, ensuring that the solutions I implement are always efficient, secure, and future-proof. My goal is to drive real business value through effective Salesforce administration.
-                        </p>
-                    </div>
-                </div>
-                <!-- End New: Detailed About Me Section -->
-
-                <a href="#portfolio" class="bg-white text-indigo-700 hover:bg-indigo-100 px-8 py-3 rounded-full text-lg font-semibold shadow-lg transition duration-300 ease-in-out transform hover:-translate-y-1">
-                    View My Work
-                </a>
-            </div>
+    <div class="container">
+        <section id="about">
+            <h2>About Me</h2>
+            <p>
+                As a dedicated Salesforce Administrator, I specialize in optimizing Salesforce instances to enhance business processes, improve data integrity, and drive user adoption. With a strong foundation in **Salesforce automations (Flow, Process Builder, Workflow Rules)**, I am adept at transforming complex requirements into efficient, scalable solutions. My expertise extends to **data management and analytics**, ensuring data-driven decisions through robust **reports and dashboards**.
+            </p>
+            <p>
+                I am passionate about implementing effective **change management strategies** to ensure seamless transitions and high user engagement. My experience includes **integrating Salesforce with external systems**, maintaining **security and compliance**, and rigorous **testing and deployment** to deliver high-quality solutions. I'm also a skilled **troubleshooter**, quick to diagnose and resolve issues to maintain system stability.
+            </p>
         </section>
 
-        <!-- Skills Section -->
-        <section id="skills" class="py-16 px-4 sm:px-6 lg:px-8 bg-gray-50">
-            <div class="container mx-auto max-w-6xl">
-                <h2 class="text-3xl sm:text-4xl section-title text-center mx-auto mb-12">My Core Skills</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-
-                    <!-- Skill Card 1: Automations & Process Optimizations -->
-                    <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition duration-300 transform hover:-translate-y-1 border border-gray-200">
-                        <h3 class="text-xl font-semibold text-indigo-700 mb-3">Automations & Process Optimizations</h3>
-                        <p class="text-gray-700">Expert in designing and implementing Salesforce Flow, Process Builder, and Workflow Rules to streamline business operations and improve efficiency.</p>
-                    </div>
-
-                    <!-- Skill Card 2: Data Management & Analytics -->
-                    <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition duration-300 transform hover:-translate-y-1 border border-gray-200">
-                        <h3 class="text-xl font-semibold text-indigo-700 mb-3">Data Management & Analytics</h3>
-                        <p class="text-gray-700">Proficient in data cleansing, migration, de-duplication, and leveraging Salesforce reports and dashboards for insightful analytics.</p>
-                    </div>
-
-                    <!-- Skill Card 3: Integration -->
-                    <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition duration-300 transform hover:-translate-y-1 border border-gray-200">
-                        <h3 class="text-xl font-semibold text-indigo-700 mb-3">Integration</h3>
-                        <p class="text-gray-700">Experienced in managing and supporting integrations with third-party applications to ensure seamless data flow and connectivity.</p>
-                    </div>
-
-                    <!-- Skill Card 4: Change Management & User Adoption -->
-                    <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition duration-300 transform hover:-translate-y-1 border border-gray-200">
-                        <h3 class="text-xl font-semibold text-indigo-700 mb-3">Change Management & User Adoption</h3>
-                        <p class="text-gray-700">Skilled in training users, creating documentation, and fostering an environment that embraces new Salesforce features and best practices.</p>
-                    </div>
-
-                    <!-- Skill Card 5: Security & Compliance -->
-                    <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition duration-300 transform hover:-translate-y-1 border border-gray-200">
-                        <h3 class="text-xl font-semibold text-indigo-700 mb-3">Security & Compliance</h3>
-                        <p class="text-gray-700">Adept at configuring profiles, permission sets, sharing rules, and organization-wide defaults to maintain data security and compliance.</p>
-                    </div>
-
-                    <!-- Skill Card 6: Reports & Dashboards -->
-                    <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition duration-300 transform hover:-translate-y-1 border border-gray-200">
-                        <h3 class="text-xl font-semibold text-indigo-700 mb-3">Reports & Dashboards</h3>
-                        <p class="text-gray-700">Creating impactful custom reports and dynamic dashboards that provide actionable insights to sales, service, and marketing teams.</p>
-                    </div>
-
-                    <!-- Skill Card 7: Testing & Deployment -->
-                    <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition duration-300 transform hover:-translate-y-1 border border-gray-200">
-                        <h3 class="text-xl font-semibold text-indigo-700 mb-3">Testing & Deployment</h3>
-                        <p class="text-gray-700">Managing sandbox refreshes, testing new functionalities, and deploying changes efficiently using change sets or DevOps tools.</p>
-                    </div>
-
-                    <!-- Skill Card 8: Troubleshooting -->
-                    <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition duration-300 transform hover:-translate-y-1 border border-gray-200">
-                        <h3 class="text-xl font-semibold text-indigo-700 mb-3">Troubleshooting</h3>
-                        <p class="text-gray-700">Strong analytical and problem-solving skills to diagnose and resolve Salesforce issues promptly, minimizing user disruption.</p>
-                    </div>
-
+        <section id="skills">
+            <h2>My Core Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-item">
+                    <h3>Salesforce Automations & Process Optimizations</h3>
+                    <p>Expert in Flow, Process Builder, Workflow Rules for streamlining business processes.</p>
+                </div>
+                <div class="skill-item">
+                    <h3>Data Management & Analytics</h3>
+                    <p>Proficient in data cleansing, migration, modeling, and leveraging data for insights.</p>
+                </div>
+                <div class="skill-item">
+                    <h3>Integration</h3>
+                    <p>Experience connecting Salesforce with various external systems and APIs.</p>
+                </div>
+                <div class="skill-item">
+                    <h3>Change Management & User Adoption</h3>
+                    <p>Strategies for successful system transitions and maximizing user engagement.</p>
+                </div>
+                <div class="skill-item">
+                    <h3>Security & Compliance</h3>
+                    <p>Implementing robust security models and ensuring data privacy and regulatory compliance.</p>
+                </div>
+                <div class="skill-item">
+                    <h3>Reports & Dashboards</h3>
+                    <p>Creating insightful reports and dynamic dashboards for data-driven decision making.</p>
+                </div>
+                <div class="skill-item">
+                    <h3>Testing & Deployment</h3>
+                    <p>Thorough testing, UAT, and efficient deployment strategies for releases.</p>
+                </div>
+                <div class="skill-item">
+                    <h3>Troubleshooting</h3>
+                    <p>Quickly identifying, diagnosing, and resolving Salesforce-related issues.</p>
                 </div>
             </div>
         </section>
 
-        <!-- Portfolio/Projects Section -->
-        <section id="portfolio" class="py-16 px-4 sm:px-6 lg:px-8 bg-white">
-            <div class="container mx-auto max-w-6xl">
-                <h2 class="text-3xl sm:text-4xl section-title text-center mx-auto mb-12">My Portfolio Projects</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-
-                    <!-- Project Card 1 (Placeholder) -->
-                    <div class="bg-gray-50 p-6 rounded-lg shadow-md border border-gray-200">
-                        <img src="https://placehold.co/600x400/edf2f7/4f46e5?text=Project+Image+1" alt="Project 1" class="w-full h-48 object-cover rounded-md mb-4 shadow-sm">
-                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Lead Automation & Assignment Flow</h3>
-                        <p class="text-gray-600 mb-4 text-sm">Developed a complex Salesforce Flow to automate lead qualification, assignment to sales reps based on region and product interest, and created follow-up tasks.</p>
-                        <a href="#" class="inline-block bg-indigo-600 text-white px-5 py-2 rounded-md hover:bg-indigo-700 transition duration-300 text-sm font-medium">View Details</a>
+        <section id="projects">
+            <h2>My Portfolio Projects</h2>
+            <div class="project-grid">
+                <div class="project-card">
+                    <img src="https://via.placeholder.com/400x200?text=Project+Image+1" alt="Project 1 Image">
+                    <div class="project-content">
+                        <h3>Automated Lead Assignment & Nurturing Flow</h3>
+                        <p>Designed and implemented a complex Salesforce Flow to automate lead assignment based on custom criteria and initiate automated email nurturing sequences.</p>
+                        <div class="project-tags">
+                            <span>Salesforce Flow</span>
+                            <span>Automation</span>
+                            <span>Process Optimization</span>
+                            <span>Sales Cloud</span>
+                        </div>
+                        <a href="[Link to Project Details/Case Study]" target="_blank" class="project-link">View Project</a>
                     </div>
+                </div>
 
-                    <!-- Project Card 2 (Placeholder) -->
-                    <div class="bg-gray-50 p-6 rounded-lg shadow-md border border-gray-200">
-                        <img src="https://placehold.co/600x400/edf2f7/4f46e5?text=Project+Image+2" alt="Project 2" class="w-full h-48 object-cover rounded-md mb-4 shadow-sm">
-                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Customer Service Case Management Enhancement</h3>
-                        <p class="text-gray-600 mb-4 text-sm">Implemented custom fields, record types, and escalation rules to streamline customer service case handling and improve resolution times.</p>
-                        <a href="#" class="inline-block bg-indigo-600 text-white px-5 py-2 rounded-md hover:bg-indigo-700 transition duration-300 text-sm font-medium">View Details</a>
+                <div class="project-card">
+                    <img src="https://via.placeholder.com/400x200?text=Project+Image+2" alt="Project 2 Image">
+                    <div class="project-content">
+                        <h3>Custom Service Cloud Dashboard for Agent Performance</h3>
+                        <p>Developed a comprehensive set of custom reports and dashboards in Service Cloud to provide real-time insights into agent productivity, case resolution times, and customer satisfaction.</p>
+                        <div class="project-tags">
+                            <span>Reports & Dashboards</span>
+                            <span>Service Cloud</span>
+                            <span>Data Analytics</span>
+                            <span>Performance Monitoring</span>
+                        </div>
+                        <a href="[Link to Project Details/Case Study]" target="_blank" class="project-link">View Project</a>
                     </div>
+                </div>
 
-                    <!-- Project Card 3 (Placeholder) -->
-                    <div class="bg-gray-50 p-6 rounded-lg shadow-md border border-gray-200">
-                        <img src="https://placehold.co/600x400/edf2f7/4f46e5?text=Project+Image+3" alt="Project 3" class="w-full h-48 object-cover rounded-md mb-4 shadow-sm">
-                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Sales Forecasting Dashboard & Reports</h3>
-                        <p class="text-gray-600 mb-4 text-sm">Designed and built a suite of custom reports and an interactive dashboard providing real-time insights into sales pipeline, performance, and forecasts.</p>
-                        <a href="#" class="inline-block bg-indigo-600 text-white px-5 py-2 rounded-md hover:bg-indigo-700 transition duration-300 text-sm font-medium">View Details</a>
+                <div class="project-card">
+                    <img src="https://via.placeholder.com/400x200?text=Project+Image+3" alt="Project 3 Image">
+                    <div class="project-content">
+                        <h3>Salesforce-ERP Integration for Order Management</h3>
+                        <p>Facilitated the integration between Salesforce Sales Cloud and an external ERP system to streamline order creation and status updates, reducing manual data entry and errors.</p>
+                        <div class="project-tags">
+                            <span>Integration</span>
+                            <span>Sales Cloud</span>
+                            <span>API</span>
+                            <span>Data Synchronization</span>
+                        </div>
+                        <a href="[Link to Project Details/Case Study]" target="_blank" class="project-link">View Project</a>
                     </div>
-
-</div>
-                    <!-- Add more project cards as needed -->
-                    <div class="bg-gray-50 p-6 rounded-lg shadow-md border border-gray-200">
-                        <img src="https://placehold.co/600x400/edf2f7/4f46e5?text=Project+Image+4" alt="Project 4" class="w-full h-48 object-cover rounded-md mb-4 shadow-sm">
-                        <h3 class="text-xl font-semibold text-gray-800 mb-2">User Onboarding Automation</h3>
-                        <p class="text-gray-600 mb-4 text-sm">Created an automated process for new user onboarding, including permission set assignment, profile setup, and initial training task allocation.</p>
-                        <a href="#" class="inline-block bg-indigo-600 text-white px-5 py-2 rounded-md hover:bg-indigo-700 transition duration-300 text-sm font-medium">View Details</a>
-                    </div>
-
-                    <div class="bg-gray-50 p-6 rounded-lg shadow-md border border-gray-200">
-                        <img src="https://placehold.co/600x400/edf2f7/4f46e5?text=Project+Image+5" alt="Project 5" class="w-full h-48 object-cover rounded-md mb-4 shadow-sm">
-                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Data Quality & Validation Rules</h3>
-                        <p class="text-gray-600 mb-4 text-sm">Implemented a series of validation rules and custom fields to ensure data quality and reduce errors across key objects like Accounts and Contacts.</p>
-                        <a href="#" class="inline-block bg-indigo-600 text-white px-5 py-2 rounded-md hover:bg-indigo-700 transition duration-300 text-sm font-medium">View Details</a>
-                    </div>
-
-                    <div class="bg-gray-50 p-6 rounded-lg shadow-md border border-gray-200">
-                        <img src="https://placehold.co/600x400/edf2f7/4f46e5?text=Project+Image+6" alt="Project 6" class="w-full h-48 object-cover rounded-md mb-4 shadow-sm">
-                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Third-Party App Integration Support</h3>
-                        <p class="text-gray-600 mb-4 text-sm">Managed and troubleshoot issues related to the integration of a marketing automation platform with Salesforce, ensuring seamless data synchronization.</p>
-                        <a href="#" class="inline-block bg-indigo-600 text-white px-5 py-2 rounded-md hover:bg-indigo-700 transition duration-300 text-sm font-medium">View Details</a>
-                    </div>
+                </div>
 
                 </div>
-            </div>
         </section>
 
-        <!-- Call to Action / Contact Section -->
-        <section id="contact" class="py-16 px-4 sm:px-6 lg:px-8 bg-gray-100">
-            <div class="container mx-auto max-w-4xl text-center">
-                <h2 class="text-3xl sm:text-4xl section-title mx-auto mb-8">Let's Connect!</h2>
-                <p class="text-lg text-gray-700 mb-8">
-                    I'm always eager to discuss new opportunities or share insights on Salesforce best practices. Feel free to reach out!
-                </p>
-                <div class="space-y-4 sm:space-y-0 sm:space-x-4 flex flex-col sm:flex-row justify-center items-center">
-                    <a href="mailto:your.email@example.com" class="bg-indigo-600 text-white px-8 py-3 rounded-lg shadow-md hover:bg-indigo-700 transition duration-300 transform hover:-translate-y-1 font-semibold text-lg">
-                        Email Me
-                    </a>
-                    <a href="https://linkedin.com/in/yourprofile" target="_blank" class="bg-gray-800 text-white px-8 py-3 rounded-lg shadow-md hover:bg-gray-900 transition duration-300 transform hover:-translate-y-1 font-semibold text-lg">
-                        Connect on LinkedIn
-                    </a>
-                </div>
-            </div>
+        <section id="contact">
+            <h2>Get In Touch</h2>
+            <p>I'm always looking for new opportunities to leverage my Salesforce skills. Feel free to connect with me!</p>
+            <p>Email: <a href="mailto:your.email@example.com">your.email@example.com</a></p>
+            <p>LinkedIn: <a href="https://www.linkedin.com/in/yourprofile" target="_blank">linkedin.com/in/yourprofile</a></p>
+            <p>Trailhead: <a href="https://trailblazer.me/id/yourtrailheadprofile" target="_blank">trailblazer.me/id/yourtrailheadprofile</a></p>
         </section>
-    </main>
+    </div>
 
-    <!-- Footer -->
-    <footer class="bg-gray-800 text-white py-8 px-4 sm:px-6 lg:px-8 text-center rounded-t-xl mt-8">
-        <div class="container mx-auto">
-            <p>&copy; 2024 Juliet Anyanwu. All rights reserved.</p>
-            <p class="text-sm text-gray-400 mt-2">Built with ❤️ and Tailwind CSS.</p>
-        </div>
+    <footer>
+        <p>&copy; 2025 [Your Name]. All rights reserved.</p>
     </footer>
-
-    <script>
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-
-                // Close mobile menu if open
-                if (mobileMenu.classList.contains('block')) {
-                    mobileMenu.classList.add('hidden');
-                    mobileMenu.classList.remove('block');
-                }
-            });
-        });
-
-        // Mobile menu toggle
-        const mobileMenuButton = document.getElementById('mobile-menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
-
-        mobileMenuButton.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-            mobileMenu.classList.toggle('block');
-        });
-    </script>
 </body>
 </html>
+Key Changes for the Profile Photo:
+HTML Structure in Header:
+I've wrapped the profile photo in a div with the class profile-photo-container and also wrapped your name and title in another div. This allows for easier styling with Flexbox.
+
+HTML
+
+<header>
+    <div class="profile-photo-container">
+        <img src="https://via.placeholder.com/150/0070D2/FFFFFF?text=Your+Photo" alt="Your Profile Photo">
+    </div>
+    <div>
+        <h1>[Your Name]</h1>
+        <p>Salesforce Administrator & Automation Specialist</p>
+    </div>
+</header>
